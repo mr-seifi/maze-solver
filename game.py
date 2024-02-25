@@ -9,14 +9,14 @@ from digital_twin import (
 from time import sleep
 
 
-def solve_maze(map_address, algorithm):
+def solve_maze(map_address, algorithm, start_pos=None, goal_pos=None):
     grid = np.genfromtxt(map_address, delimiter=",", dtype=int)
-    num_rows, num_columns = len(grid), len(grid[0])
+    num_rows, num_columns = grid.shape[0], grid.shape[1]
     empty_block_count = np.count_nonzero(grid == 1)
 
     # Define start & goal positions
-    start_pos = (0, 0)
-    goal_pos = (num_rows - 1, num_columns - 1)
+    start_pos = (0, 0) if start_pos is None else start_pos
+    goal_pos = (num_rows - 1, num_columns - 1) if goal_pos is None else goal_pos
 
     grid[0, 0] = 2
     grid[-1, -1] = 3
@@ -34,14 +34,14 @@ def solve_maze(map_address, algorithm):
     )
     idx_to_color = [black, white, green, red, blue, magenta]
 
-    height = 15
-    width = height
+    window_size = [min(800, num_columns * 15), min(800, num_rows * 15)]
     margin = 1
+    height = (window_size[1] - margin * (num_rows - 1)) / num_rows
+    width = (window_size[0] - margin * (num_columns - 1)) / num_columns
 
     pygame.init()
 
-    WINDOW_SIZE = [660, 660]
-    screen = pygame.display.set_mode(WINDOW_SIZE)
+    screen = pygame.display.set_mode(window_size)
 
     pygame.display.set_caption(f"{algorithm} Pathfinder. Solving: {map_address}")
 
@@ -101,7 +101,6 @@ def solve_maze(map_address, algorithm):
         pygame.display.flip()
 
         if run == True:
-            sleep(0.01)
             solution, done, grid = digital_twin.update(grid=grid)
 
         if done == True:
