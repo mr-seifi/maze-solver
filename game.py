@@ -18,8 +18,8 @@ def solve_maze(map_address, algorithm, start_pos=None, goal_pos=None):
     start_pos = (0, 0) if start_pos is None else start_pos
     goal_pos = (num_rows - 1, num_columns - 1) if goal_pos is None else goal_pos
 
-    grid[0, 0] = 2
-    grid[-1, -1] = 3
+    grid[*start_pos] = 2
+    grid[*goal_pos] = 3
 
     grid_dim = (num_rows - 1, num_columns - 1)
 
