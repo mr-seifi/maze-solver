@@ -33,7 +33,7 @@ def solve_maze(map_address, algorithm, start_pos=None, goal_pos=None):
         (50, 205, 50),
         (255, 99, 71),
         (211, 211, 211),
-        (153, 255, 255),
+        (0, 94, 255),
         (255, 0, 255),
     )
     idx_to_color = [black, white, green, red, blue, magenta]
