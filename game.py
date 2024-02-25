@@ -17,10 +17,12 @@ def solve_maze(map_address, algorithm, start_pos=None, goal_pos=None):
     # Define start & goal positions
     start_pos = (0, 0) if start_pos is None else start_pos
     goal_pos = (num_rows - 1, num_columns - 1) if goal_pos is None else goal_pos
-
-    grid[*start_pos] = 2
-    grid[*goal_pos] = 3
-
+    try:
+        grid[*start_pos] = 2
+        grid[*goal_pos] = 3
+    except IndexError:
+        print("Error: Start or goal position is out of the maze!")
+        return None
     grid_dim = (num_rows - 1, num_columns - 1)
 
     black, white, green, red, grey, blue, magenta = (
