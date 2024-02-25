@@ -22,9 +22,7 @@ class DFS_Digital_Twin:
         return [] if curr_node.parent is None else self._backtrack(curr_node.parent) + [curr_node.position()]
 
     def update(self, grid):
-        print('SS')
         curr_state = self.stack.pop()
-        print("HEYYYYYY")
         x, y = curr_state.position()
         done = False
         solution_path = []
