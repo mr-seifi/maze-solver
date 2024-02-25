@@ -74,7 +74,7 @@ def solve_maze(map_address, algorithm, start_pos=None, goal_pos=None):
         digital_twin = A_Star_Algorithm(
             start_pos=start_pos, goal_pos=goal_pos, grid_dim=grid_dim
         )
-    elif algorithm == "A_Star_Geometric":
+    elif algorithm == "ASG":
         digital_twin = A_Star_Geometric_Algorithm(
             start_pos=start_pos, goal_pos=goal_pos, grid_dim=grid_dim
         )
