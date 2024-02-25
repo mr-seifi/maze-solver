@@ -4,10 +4,11 @@ from enum import Enum
 
 
 class Algorithm(Enum):
-    dfs = "dfs"
-    bfs = "bfs"
-    ids = "ids"
-    a_star = "a_star"
+    dfs = "DFS"
+    bfs = "BFS"
+    ids = "IDS"
+    a_star = "A_Star"
+    a_star_geometric = "ASG"
 
     def __str__(self):
         return self.value
@@ -23,7 +24,7 @@ def main():
         "--algorithm",
         type=Algorithm,
         choices=list(Algorithm),
-        help="Algorithm must be: [dfs, bfs, ids, a_star]",
+        help="Algorithm must be: [DFS, BFS, IDS, A_Star, ASG]",
     )
     parser.add_argument(
         "-m", "--map", default=0, type=int, help="0, and 1 are the available maps"
@@ -44,7 +45,7 @@ def main():
 
         solve_maze(
             map_address=f"mazes/maze_{args.map}.csv",
-            algorithm=str(args.algorithm).upper(),
+            algorithm=str(args.algorithm),
             start_pos=start_pos,
             goal_pos=goal_pos,
         )
