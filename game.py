@@ -1,10 +1,12 @@
 import numpy as np
-import pygame, time, csv
-from digital_twin import (
-    DFS_Digital_Twin,
-    BFS_Digital_Twin,
-    IDS_Digital_Twin,
-    A_Star_Digital_Twin,
+import pygame
+import time
+import csv
+from Algorithm import (
+    DFS_Algorithm,
+    BFS_Algorithm,
+    IDS_Algorithm,
+    A_Star_Algorithm,
 )
 from time import sleep
 
@@ -43,7 +45,8 @@ def solve_maze(map_address, algorithm):
     WINDOW_SIZE = [660, 660]
     screen = pygame.display.set_mode(WINDOW_SIZE)
 
-    pygame.display.set_caption(f"{algorithm} Pathfinder. Solving: {map_address}")
+    pygame.display.set_caption(
+        f"{algorithm} Pathfinder. Solving: {map_address}")
 
     done = False
     run = False
@@ -54,19 +57,19 @@ def solve_maze(map_address, algorithm):
     digital_twin = None
 
     if algorithm == "BFS":
-        digital_twin = BFS_Digital_Twin(
+        digital_twin = BFS_Algorithm(
             start_pos=start_pos, goal_pos=goal_pos, grid_dim=grid_dim
         )
     elif algorithm == "DFS":
-        digital_twin = DFS_Digital_Twin(
+        digital_twin = DFS_Algorithm(
             start_pos=start_pos, goal_pos=goal_pos, grid_dim=grid_dim
         )
     elif algorithm == "IDS":
-        digital_twin = IDS_Digital_Twin(
+        digital_twin = IDS_Algorithm(
             start_pos=start_pos, goal_pos=goal_pos, grid_dim=grid_dim
         )
     elif algorithm == "A_Star":
-        digital_twin = A_Star_Digital_Twin(
+        digital_twin = A_Star_Algorithm(
             start_pos=start_pos, goal_pos=goal_pos, grid_dim=grid_dim
         )
     else:

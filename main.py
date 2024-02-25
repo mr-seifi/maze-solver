@@ -15,7 +15,7 @@ class Algorithm(Enum):
 def main():
     parser = argparse.ArgumentParser(prog='Maze Solver',
                                      description='Utilizing artificial intelligence algorithms to solve mazes')
-    parser.add_argument('-a', '--algorithm', type=Algorithm, choices=list(Algorithm), help='Algorithm must be: [dfs, bfs, ids, a_star]')
+    parser.add_argument('-a', '--algorithm', type=Algorithm, default='dfs', choices=list(Algorithm), help='Algorithm must be: [dfs, bfs, ids, a_star]')
     parser.add_argument('-m', '--map', default=0, type=int, help='0, and 1 are the available maps')
     
     args = parser.parse_args()
