@@ -85,3 +85,18 @@ class A_Star_Algorithm:
             grid (Updated 2D array)
         """
         pass
+
+
+class A_Star_Geometric_Algorithm:
+    def __init__(self, start_pos, goal_pos, grid_dim):
+        pass
+
+    def update(self, grid):
+        """
+        Input: grid (2D array)
+        Output:
+            solution_path (List of tuples, empty if no solution found)
+            done (Boolean, True if the goal is reached, False otherwise)
+            grid (Updated 2D array)
+        """
+        pass

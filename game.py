@@ -3,6 +3,7 @@ import pygame
 import time
 import csv
 from Algorithm import (
+    A_Star_Geometric_Algorithm,
     DFS_Algorithm,
     BFS_Algorithm,
     IDS_Algorithm,
@@ -71,6 +72,10 @@ def solve_maze(map_address, algorithm, start_pos=None, goal_pos=None):
         )
     elif algorithm == "A_Star":
         digital_twin = A_Star_Algorithm(
+            start_pos=start_pos, goal_pos=goal_pos, grid_dim=grid_dim
+        )
+    elif algorithm == "A_Star_Geometric":
+        digital_twin = A_Star_Geometric_Algorithm(
             start_pos=start_pos, goal_pos=goal_pos, grid_dim=grid_dim
         )
     else:
