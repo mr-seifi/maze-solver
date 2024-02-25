@@ -1,6 +1,6 @@
 import numpy as np
 import pygame, time, csv
-from digital_twin import (
+from Algorithm import (
     DFS_Digital_Twin,
     BFS_Digital_Twin,
     IDS_Digital_Twin,
