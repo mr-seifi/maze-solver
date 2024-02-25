@@ -1,24 +1,37 @@
 import numpy as np
 import pygame, time, csv
-from digital_twin import DFS_Digital_Twin, BFS_Digital_Twin, IDS_Digital_Twin, A_Star_Digital_Twin
+from digital_twin import (
+    DFS_Digital_Twin,
+    BFS_Digital_Twin,
+    IDS_Digital_Twin,
+    A_Star_Digital_Twin,
+)
 from time import sleep
 
 
 def solve_maze(map_address, algorithm):
-    grid = np.genfromtxt(map_address, delimiter=',', dtype=int)
+    grid = np.genfromtxt(map_address, delimiter=",", dtype=int)
     num_rows, num_columns = len(grid), len(grid[0])
     empty_block_count = np.count_nonzero(grid == 1)
 
     # Define start & goal positions
-    start_pos = (0,0)
-    goal_pos = (num_rows-1, num_columns-1)
+    start_pos = (0, 0)
+    goal_pos = (num_rows - 1, num_columns - 1)
 
     grid[0, 0] = 2
     grid[-1, -1] = 3
 
-    grid_dim = (num_rows-1, num_columns-1)
+    grid_dim = (num_rows - 1, num_columns - 1)
 
-    black, white, green, red, grey, blue, magenta = (0,0,0), (255, 255, 255), (50,205,50), (255,99,71), (211,211,211), (153,255,255), (255,0,255)
+    black, white, green, red, grey, blue, magenta = (
+        (0, 0, 0),
+        (255, 255, 255),
+        (50, 205, 50),
+        (255, 99, 71),
+        (211, 211, 211),
+        (153, 255, 255),
+        (255, 0, 255),
+    )
     idx_to_color = [black, white, green, red, blue, magenta]
 
     height = 15
@@ -41,16 +54,24 @@ def solve_maze(map_address, algorithm):
     digital_twin = None
 
     if algorithm == "BFS":
-        digital_twin = BFS_Digital_Twin(start_pos=start_pos, goal_pos=goal_pos, grid_dim=grid_dim)
+        digital_twin = BFS_Digital_Twin(
+            start_pos=start_pos, goal_pos=goal_pos, grid_dim=grid_dim
+        )
     elif algorithm == "DFS":
-        digital_twin = DFS_Digital_Twin(start_pos=start_pos, goal_pos=goal_pos, grid_dim=grid_dim)
+        digital_twin = DFS_Digital_Twin(
+            start_pos=start_pos, goal_pos=goal_pos, grid_dim=grid_dim
+        )
     elif algorithm == "IDS":
-        digital_twin = IDS_Digital_Twin(start_pos=start_pos, goal_pos=goal_pos, grid_dim=grid_dim)
+        digital_twin = IDS_Digital_Twin(
+            start_pos=start_pos, goal_pos=goal_pos, grid_dim=grid_dim
+        )
     elif algorithm == "A_Star":
-        digital_twin = A_Star_Digital_Twin(start_pos=start_pos, goal_pos=goal_pos, grid_dim=grid_dim)
+        digital_twin = A_Star_Digital_Twin(
+            start_pos=start_pos, goal_pos=goal_pos, grid_dim=grid_dim
+        )
     else:
         return None
-    
+
     while not done:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -65,7 +86,16 @@ def solve_maze(map_address, algorithm):
         for row in range(num_rows):
             for column in range(num_columns):
                 color = idx_to_color[grid[row, column]]
-                pygame.draw.rect(screen, color, [(margin + width) * column + margin, (margin + height) * row + margin, width, height])
+                pygame.draw.rect(
+                    screen,
+                    color,
+                    [
+                        (margin + width) * column + margin,
+                        (margin + height) * row + margin,
+                        width,
+                        height,
+                    ],
+                )
 
         clock.tick(60)
         pygame.display.flip()
@@ -85,7 +115,16 @@ def solve_maze(map_address, algorithm):
             for row in range(num_rows):
                 for column in range(num_columns):
                     color = idx_to_color[grid[row, column]]
-                    pygame.draw.rect(screen, color, [(margin + width) * column + margin, (margin + height) * row + margin, width, height])
+                    pygame.draw.rect(
+                        screen,
+                        color,
+                        [
+                            (margin + width) * column + margin,
+                            (margin + height) * row + margin,
+                            width,
+                            height,
+                        ],
+                    )
 
             clock.tick(60)
             pygame.display.flip()
