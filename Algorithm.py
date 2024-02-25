@@ -93,6 +93,7 @@ class A_Star_Geometric_Algorithm:
 
     def update(self, grid):
         """
+        ***************************bonus***************************
         Input: grid (2D array)
         Output:
             solution_path (List of tuples, empty if no solution found)
